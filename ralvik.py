@@ -12,8 +12,6 @@ PROJECT = 'PROJECT'
 
 rally = Rally(SERVER, USER, PASSWORD, workspace=WORKSPACE)
 user_stories = rally.get('HierarchicalRequirement', fetch=True)
-
-#for user_story in user_stories:
         
 #Step 2 : Access all userstories that has names 'Disability-Policy Equipment' or 'Enahnaced-Life policy Equipment'
 #(100) and get their status.
@@ -55,17 +53,14 @@ elif lane=='Released to production':
     FinalValue = 'Done'
 
 #Step 4 : Connect to excel sheet and update the values.
-
 import openpyxl
 from openpyxl import Workbook,load_workbook
 
 workbook = Workbook()
 sheet = workbook.active
-
 #the file should be in the current working directory
 workbook = load_workbook(filename="hello_world.xlsx")
 #print(workbook.sheetnames)
-
 sheet = workbook.active
 print(sheet)
 print(sheet.max_row)

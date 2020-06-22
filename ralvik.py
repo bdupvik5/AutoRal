@@ -11,11 +11,7 @@ WORKSPACE = 'WORKSPACE'
 PROJECT = 'PROJECT'
 
 rally = Rally(SERVER, USER, PASSWORD, workspace=WORKSPACE)
-
-project_req = rally.get('Project', fetch=True, query='Name = "%s"' % (PROJECT))
-project = ''
-
-user_stories = rally.get('HierarchicalRequirement', fetch=True, query='Project = %s' % (project.ref))
+user_stories = rally.get('HierarchicalRequirement', fetch=True)
 
 #for user_story in user_stories:
         
@@ -66,16 +62,7 @@ from openpyxl import Workbook,load_workbook
 workbook = Workbook()
 sheet = workbook.active
 
-sheet["A1"] = "State"
-sheet["B1"] = "DI"
-sheet["C1"] = "Life"
-sheet["A2"] = "AL"
-sheet["A3"] = "CT"
-sheet["A4"] = "NY"
-sheet["A5"] = "OH"
-
-workbook.save(filename="hello_world.xlsx")
-
+#the file should be in the current working directory
 workbook = load_workbook(filename="hello_world.xlsx")
 #print(workbook.sheetnames)
 
@@ -83,10 +70,9 @@ sheet = workbook.active
 print(sheet)
 print(sheet.max_row)
 
-        
 PRICE_UPDATES = {'AL': 100,'CT': 75, 'OH': 25,'NY':0}
         
-        # Loop through the rows and update the prices.
+ # Loop through the rows and update the prices.
 for rowNum in range(2, sheet.max_row): # skip the first row
    statename = sheet.cell(row=rowNum, column=1).value
    if statename in PRICE_UPDATES:
